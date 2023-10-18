@@ -1,71 +1,67 @@
+import BinaryHeap
 import time
-ls = open('./input.txt', 'r').read().split('\n')[:-1]
+
+start_time = time.time()
+ll = [[int(g) for g in list(ii[:-1])] for ii in open('./input.txt', 'r').readlines()]
 
 """ Part 1 """
 
-start_time = time.time()
-cavern = []
-for line in ls:
-    cavern.append([int(i) for i in line])
-
 class Node:
-    def __init__(self, pos, prev):
-        self.x = pos[0]
-        self.y = pos[1]
+    def __init__(self, pos, cost) -> None:
         self.pos = pos
-        self.prev = prev
+        self.cost = cost
         self.distance = -1
+    
+    def __lt__(self, a):
+        return self.distance < a.distance
+    
+    def __gt__(self, a):
+        return self.distance > a.distance
 
-queue = [Node([x, y], []) for x in range(len(cavern)) for y in range(len(cavern[0]))]
-finished = []
+def get_edges(pos, edge, finished):
+    e = []
+    if pos[0] < edge and (pos[0] + 1, pos[1]) not in finished:
+        e.append((pos[0] + 1, pos[1]))
+    if pos[1] < edge and (pos[0], pos[1] + 1) not in finished:
+        e.append((pos[0], pos[1] + 1))
+    if pos[0] > 0 and (pos[0] - 1, pos[1]) not in finished:
+        e.append((pos[0] - 1, pos[1]))
+    if pos[1] > 0 and (pos[0], pos[1] - 1) not in finished:
+        e.append((pos[0], pos[1] - 1))
+    return e
 
-def should_i_go_here(loc):
-    for node in finished:
-        if node.pos == loc:
-            return False
-    return True
+def find_shortest_path(cavern, start, end):
+    finished = {}
+    current_pos = start
+    cavern[current_pos].distance = 0
+    heap = BinaryHeap.BinaryHeap()
+    while len(finished) != len(cavern):
+        for next_location in get_edges(current_pos, (len(cavern) ** (1/2)) - 1, finished):
+            next_node = cavern[next_location]
+            if cavern[current_pos].distance + next_node.cost < next_node.distance or next_node.distance == -1:
+                next_node.distance = cavern[current_pos].distance + next_node.cost
+                heap.add(next_node)
+        finished[current_pos] = cavern[current_pos].distance
+        if current_pos == end:
+            return finished[end]
+        current_pos = heap.remove().pos
 
-def get_node(loc):
-    for node in queue:
-        if node.pos == loc:
-            return node
-
-def get_possible_locations(loc):
-    m = []
-    if loc[1] < len(cavern[loc[0]]) - 1 and should_i_go_here([loc[0], loc[1]+1]):
-        m.append([loc[0], loc[1]+1])
-    if loc[1] > 0 and should_i_go_here([loc[0], loc[1]-1]):
-        m.append([loc[0], loc[1]-1])
-    if loc[0] < len(cavern) - 1 and should_i_go_here([loc[0]+1, loc[1]]):
-        m.append([loc[0]+1, loc[1]])
-    if loc[0] > 0 and should_i_go_here([loc[0]-1, loc[1]]):
-        m.append([loc[0]-1, loc[1]])
-    return m
-
-queue[0].distance = 0
-while queue != []:
-    for location in get_possible_locations(queue[0].pos):
-        node = get_node(location)
-        node.prev = [queue[0].pos] + queue[0].prev
-        if node.distance == -1 or node.distance > queue[0].distance + cavern[location[0]][location[1]]:
-            node.distance = cavern[location[0]][location[1]] + queue[0].distance
-            queue.remove(node)
-            for i in range(1, len(queue)):
-                current = queue[i]
-                if current.distance == -1 or node.distance < current.distance:
-                    queue.insert(i, node)
-                    break
-            else:
-                queue.append(node)
-    removed = queue.pop(0)
-    finished.append(removed)
-
-# try switching to binary heap
-# if thats too hard, change how often i use a for loop just to find the node
-
-for node in finished:
-    if node.pos == [len(cavern) - 1, len(cavern[0]) - 1]:
-        print(f'{node.pos} has distance {node.distance}')
-print(f'Took {time.time() - start_time} seconds')
+cavern = {}
+for x, row in enumerate(ll):
+    for y, num in enumerate(row):
+        cavern[(x, y)] = Node((x, y), num)
+print(find_shortest_path(cavern, (0, 0), ((len(cavern) ** (1/2)) - 1, (len(cavern) ** (1/2)) - 1)))
+print(f'Finished in {time.time() - start_time}')
 
 """ Part 2 """
+
+cavern = {}
+for i in range(len(ll) * 5):
+    for j in range(len(ll[0]) * 5):
+        num = (ll[i % len(ll)][j % len(ll)] + ((i // len(ll)) + (j // len(ll)))) % 9
+        if num == 0:
+            num = 9
+        cavern[(i, j)] = Node((i, j), int(num))
+
+print(find_shortest_path(cavern, (0, 0), ((len(cavern) ** (1/2)) - 1, (len(cavern) ** (1/2)) - 1)))
+print(f'Finished in {time.time() - start_time}')
