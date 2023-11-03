@@ -1,4 +1,4 @@
-code, ll = open('../input.txt', 'r').read().split('\n\n')
+code, ll = open('./input.txt', 'r').read().split('\n\n')
 rules = dict([g.split(' -> ') for g in ll.split('\n')][:-1])
 
 """ Part 1 """

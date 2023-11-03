@@ -1,4 +1,4 @@
-h = list(list(int(d) for d in i[:-1]) for i in open('../input.txt', 'r').readlines())
+h = list(list(int(d) for d in i[:-1]) for i in open('./input.txt', 'r').readlines())
 
 """ Part 1 """
 

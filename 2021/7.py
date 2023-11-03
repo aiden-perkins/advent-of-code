@@ -1,4 +1,4 @@
-pos = list(int(i) for i in open('../input.txt', 'r').readlines()[0][:-1].split(','))
+pos = list(int(i) for i in open('./input.txt', 'r').readlines()[0][:-1].split(','))
 
 """ Part 1 """
 

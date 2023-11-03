@@ -1,4 +1,4 @@
-lines = open('../input.txt', 'r').readlines()
+lines = open('./input.txt', 'r').readlines()
 dra = lines[0][:-1]
 lines.pop(0)
 lines.pop(0)

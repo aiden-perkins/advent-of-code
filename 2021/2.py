@@ -1,4 +1,4 @@
-f = open('../input.txt', 'r')
+f = open('./input.txt', 'r')
 lines = f.readlines()
 
 """ Part 1 """

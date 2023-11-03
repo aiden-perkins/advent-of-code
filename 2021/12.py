@@ -1,4 +1,4 @@
-h = list(i[:-1].split('-') for i in open('../input.txt', 'r').readlines())
+h = list(i[:-1].split('-') for i in open('./input.txt', 'r').readlines())
 
 """ Part 1 """
 

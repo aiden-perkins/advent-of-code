@@ -1,9 +1,10 @@
 import requests
 import sys
 
-day = int(sys.argv[1])
+line = input('[Day] (year): \n').split(' ')
+day = line[0]
 try:
-    year = int(sys.argv[2])
+    year = int(line[1])
 except IndexError:
     year = 2021
 link = f'https://adventofcode.com/{year}/day/{day}/input'

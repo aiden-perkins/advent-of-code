@@ -1,4 +1,4 @@
-ll = open('../input.txt', 'r').readlines()
+ll = open('./input.txt', 'r').readlines()
 
 """ Part 1 """
 
