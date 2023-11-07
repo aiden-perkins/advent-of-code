@@ -1,4 +1,3 @@
 input.txt
 __pycache__
-.idea/*
-!.idea/discord.xml
+.idea
