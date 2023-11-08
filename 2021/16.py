@@ -2,66 +2,51 @@ ls = open('./input.txt', 'r').read().split('\n')[:-1][0]
 
 """ Part 1 """
 
+ls = 'C200B40A82'
 bits = ''
-for value in ls:
-    bits += str(bin(int(value, 16))[2:].zfill(4))
+for b in ls:
+    bits += str(bin(int(b, 16))[2:].zfill(4))
 
-# packets with type ID == 4 are a literal value
-# these have groups of 5 bits that start with 1 and if it starts with a 0 then its the last
 
-# packet with type ID != 4 are operator packets, contains one or more packets
-# if the 7th bit is 0, then the next 15 bits make a number that represents the total number of bits in the packet
-# if its 1, then its the next 11 bits represents the number of subpackets.
-
-packet_version_bits = ''
-packet_type_id_bits = ''
-
-length_type_id = -1
-
-num_of_subpackets_bits = ''
-num_of_bits_bits = ''
-
-literal_value_bits = ''
-last_literal_value_bits_num = 0
-add_bits = False
-
-for i in range(len(bits)):
-    if len(packet_version_bits) != 3:
-        packet_version_bits += bits[i:i+1]
-    elif len(packet_type_id_bits) != 3:
-        packet_type_id_bits += bits[i:i+1]
-    else:
-        packet_version = int(packet_version_bits, 2)
-        packet_type_id = int(packet_type_id_bits, 2)
-        if packet_type_id != 4:  # operator packet
-            if length_type_id == -1:
-                length_type_id = int(bits[i:i+1])
+def parse_multiple_packets(bit_string):
+    packets = []
+    while bit_string != '':
+        c_i = 6
+        pv, ptid = int(bit_string[0:3], 2), int(bit_string[3:6], 2)
+        if ptid != 4:
+            c_i += 1
+            ltid = int(bit_string[6:7], 2)
+            if ltid == 0:
+                c_i += 15
+                new_bits = bit_string[22:22 + int(bit_string[7:22], 2)]
             else:
-                if length_type_id == 1:  # next 11 bits will show the amount of subpackets
-                    if len(num_of_subpackets_bits) != 11:
-                        num_of_subpackets_bits += bits[i:i+1]
-                    elif len(num_of_subpackets_bits) == 11:
-                        num_of_subpackets = int(num_of_subpackets_bits, 2)
-                        # new packet
-                elif length_type_id == 0:  # next 15 bits will show the amount of bits 
-                    if len(num_of_bits_bits) != 15:
-                        num_of_bits_bits += bits[i:i+1]
-                    elif len(num_of_bits_bits) == 15:
-                        num_of_bits = int(num_of_bits_bits, 2)
-                        # new packet
-        elif packet_type_id == 4:  # literal value packet
-            if add_bits or last_literal_value_bits_num != 0:
-                literal_value_bits += bits[i:i+1]
-            if len(literal_value_bits) % 4 == 0 and add_bits:  # this will stop adding to the string
-                add_bits = False
-            elif not add_bits and last_literal_value_bits_num == 0:
-                if bits[i:i+1] == '0':
-                    last_literal_value_bits_num = len(literal_value_bits)
-                else:
-                    add_bits = True
-            elif len(literal_value_bits) % 4 == 0:
-                pass
-                # new packet  
+                c_i += 11
+                new_bits = bit_string[18:]
+            packets += [[pv, ptid, 'sub', c_i]]
+            new_packets = parse_multiple_packets(new_bits)
+            for n_p in new_packets:
+                c_i += n_p[3]
+            packets += new_packets
+        else:
+            n_b_s = ''
+            for bit_group in range(len(bit_string[6:]) // 5):
+                n_b_s += bit_string[6 + (bit_group * 5):((bit_group + 1) * 5) + 6]
+                if bit_string[6 + (bit_group * 5):7 + (bit_group * 5)] == '0':
+                    break
+            c_i += len(n_b_s)
+            packets.append([pv, ptid, int(n_b_s, 2), len(n_b_s) + 6])
+        bit_string = bit_string[c_i:]
+        if '1' not in bit_string:
+            break
+    return packets
+
+
+total_version_nums = 0
+ps = parse_multiple_packets(bits)
+for packet in ps:
+    total_version_nums += packet[0]
+print(total_version_nums)
 
 """ Part 2 """
 
+print(ps)
