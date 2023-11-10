@@ -20,4 +20,5 @@ ___Other:___
 
 - [t.py](t.py) is just what I use as a template for starting new days.
 - [BinaryHeap.py](2021/BinaryHeap.py) is just the data structure I used for 2021 day 15 so it could run much faster, this file is just from one of my classes and I used it because I was familiar with how it works.
+- [BinaryTree.py](2021/BinaryTree.py) this is also just a data structure I used for 2021 day 18.
 
