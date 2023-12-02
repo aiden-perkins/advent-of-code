@@ -22,13 +22,11 @@ for line in h:
         v = False
         ppp = []
         for sign in range(len(line)):
-            try:
+            if line[sign] in dic:
                 if len(line) != sign + 1:
                     if dic[line[sign]] == line[sign + 1]:
                         v = True
                         ppp.append([sign, sign + 1])
-            except KeyError:
-                pass
         ppp = ppp[::-1]
         for item in ppp:
             line.pop(item[1])
