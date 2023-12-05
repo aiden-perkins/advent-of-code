@@ -23,13 +23,13 @@ print(t)
 """ Part 2 """
 
 t = 0
-for game_num, game in enumerate(games):
+for game in games:
     ck = {'red': 0, 'green': 0, 'blue': 0}
     for color in ck.keys():
         while color in game:
             i = game.index(color)
             if int(game[i - 3:i]) > ck[color]:
                 ck[color] = int(game[i - 3:i])
-            game = game[0:i - 3] + game[i + len(color):]
+            game = game[:i - 3] + game[i + len(color):]
     t += reduce(operator.mul, ck.values(), 1)
 print(t)
