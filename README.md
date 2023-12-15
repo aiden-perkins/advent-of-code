@@ -1,7 +1,8 @@
 # Advent of Code
 
 This repository contains my solutions for the [Advent of Code](https://adventofcode.com/) programming challenges.
-My goal is the eventually earn all 50 stars for every year but I am far from that (22/50 for 2022, 34/50 for 2021, & 5/50 for 2020).
+My goal is the eventually earn all 50 stars for every year, but I am far from that (22/50 for 2022, 34/50 for 2021, & 5/50 for 2020).
+I also want to try and use a different language for the previous years, some I want to try are kotlin, golang, java, c++, c#, & rust.
 
 ___Input:___
 

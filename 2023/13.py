@@ -1,6 +1,3 @@
-import copy
-from collections import defaultdict
-
 ls = open('./input.txt').read().split('\n\n')
 
 """ Part 1 """
