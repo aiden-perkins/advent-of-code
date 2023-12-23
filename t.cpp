@@ -29,7 +29,9 @@ int part_2(string &input) {
 
 int main() {
     string input = get_input();
-    cout << part_1(input) << endl;
-    cout << part_2(input) << endl;
+    int p1_answer = part_1(input);
+    int p2_answer = part_2(input);
+    cout << "Part 1: " << p1_answer << endl;
+    cout << "Part 2: " << p2_answer << endl;
     return 0;
 }

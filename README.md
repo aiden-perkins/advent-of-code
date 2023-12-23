@@ -1,12 +1,12 @@
 # Advent of Code
 
 This repository contains my solutions for the [Advent of Code](https://adventofcode.com/) programming challenges.
-My goal is the eventually earn all 50 stars for every year, but I am far from that (22/50 for 2022, 34/50 for 2021, & 5/50 for 2020).
+My goal is the eventually earn all 50 stars for every year, but I am far from that (32/50 for 2023, 22/50 for 2022, 41/50 for 2021, 5/50 for 2020, & 4/50 for 2015).
 I also want to try and use a different language for the previous years, some I want to try are kotlin, golang, java, c++, c#, & rust.
 
 ___Input:___
 
-- To get an input you first need to get your session token from [the Advent of Code website](https://adventofcode.com/) and put it in the empty string on line 11 in [in.py](in.py).
+- To get an input you first need to get your session token from [the Advent of Code website](https://adventofcode.com/) and put it in the session string on line 12 in [in.py](in.py).
 - You can either run [.a.bat](.a.bat) (it's called `.a.bat` so I can press `.` on my keyboard, then tab, allowing me to get the input faster) if you are on windows or just `python3 in.py` and then enter the day/year, if you don't put a year it will default to 2021.
 
 
@@ -20,6 +20,5 @@ ___Running:___
 ___Other:___
 
 - [t.py](t.py) is just what I use as a template for starting new days.
-- [BinaryHeap.py](2021/BinaryHeap.py) is just the data structure I used for 2021 day 15 so it could run much faster, this file is just from one of my classes and I used it because I was familiar with how it works.
-- [BinaryTree.py](2021/BinaryTree.py) this is also just a data structure I used for 2021 day 18.
+- [BinaryTree.py](2021/BinaryTree.py) Just a data structure I used for 2021 day 18, it's from one of my classes in college, so I understood how to use it easily without having to lookup stuff online.
 

@@ -1,5 +1,4 @@
 import requests
-import sys
 
 line = input('[Day] (year): \n').split(' ')
 day = line[0]
@@ -8,8 +7,11 @@ try:
 except IndexError:
     year = 2023
 link = f'https://adventofcode.com/{year}/day/{day}/input'
-cookies = {'session': ''}
-inp = requests.get(link, cookies=cookies).content.decode('utf-8')
+headers = {
+    'user-agent': 'https://github.com/aiden-perkins/advent-of-code',
+    'cookie': 'session='
+}
+inp = requests.get(link, headers=headers).content.decode()
 txt = open('input.txt', 'w')
 txt.write(inp)
 txt.close()
