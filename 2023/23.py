@@ -57,7 +57,6 @@ def find_edges(x, y):
     return edges
 
 
-forest = [list(a) for a in ls]
 forks = [(0, 1), (len(ls) - 1, len(ls) - 2)]
 for i in range(1, len(ls) - 1):
     for j in range(1, len(ls[0]) - 1):
@@ -65,7 +64,11 @@ for i in range(1, len(ls) - 1):
             if len(find_edges(i, j)) > 2:
                 forks.append((i, j))
 
-graf = defaultdict(dict)
+converter = {}
+for i, f in enumerate(forks):
+    converter[f] = 2 ** (i + 1)
+
+graf = defaultdict(list)
 for fork in forks:
     for start_edge in find_edges(*fork):
         path = [fork, start_edge]
@@ -73,18 +76,21 @@ for fork in forks:
         while path[-1] not in forks:
             distance += 1
             path.append([a for a in find_edges(*path[-1]) if a not in path][0])
-        graf[fork][path[-1]] = distance
+        graf[converter[fork]].append((converter[path[-1]], distance))
 
-mx = 0
-q = deque([[0, (0, 1)]])
-while q:
-    current = q.popleft()
-    c_node = current[-1]
-    for new_node, cost in graf[c_node].items():
-        if new_node not in current:
-            new_cost = current[0] + cost
-            q.append([new_cost] + current[1:] + [new_node])
-    if c_node == (len(ls) - 1, len(ls) - 2) and current[0] > mx:
-        print(mx)
-        mx = current[0]
-print(mx)
+end_vertex = converter[(len(ls) - 1, len(ls) - 2)]
+stack = [(converter[(0, 1)], 0, 0)]
+max_distance = 0
+
+while stack:
+    current_vertex, cost, seen = stack.pop()
+    seen |= current_vertex
+    if current_vertex == end_vertex:
+        if cost > max_distance:
+            max_distance = cost
+    for next_vertex, next_cost in graf[current_vertex]:
+        if next_vertex & seen:
+            continue
+        stack.append((next_vertex, cost + next_cost, seen))
+
+print(max_distance)  # Takes about 10 seconds.
