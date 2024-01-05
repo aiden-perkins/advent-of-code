@@ -1,56 +1,45 @@
 import heapq
+from collections import defaultdict
+from math import inf
 
 ll = [[int(g) for g in list(ii[:-1])] for ii in open('./input.txt').readlines()]
 
 """ Part 1 """
 
 
-class Node:
-    def __init__(self, pos, cost) -> None:
-        self.pos = pos
-        self.cost = cost
-        self.distance = -1
-
-    def __lt__(self, a):
-        return self.distance < a.distance
-
-
-def get_edges(pos, edge, finished):
-    e = []
-    if pos[0] < edge and (pos[0] + 1, pos[1]) not in finished:
-        e.append((pos[0] + 1, pos[1]))
-    if pos[1] < edge and (pos[0], pos[1] + 1) not in finished:
-        e.append((pos[0], pos[1] + 1))
-    if pos[0] > 0 and (pos[0] - 1, pos[1]) not in finished:
-        e.append((pos[0] - 1, pos[1]))
-    if pos[1] > 0 and (pos[0], pos[1] - 1) not in finished:
-        e.append((pos[0], pos[1] - 1))
-    return e
+def get_edges(node, seen, cost, start, stop):
+    (px, py), vert = node
+    d = [(1, 0), (-1, 0)] if vert else [(0, 1), (0, -1)]
+    for dx, dy in d:
+        x, y = px, py
+        line_cost = 0
+        for straight in range(1, stop + 1):
+            x += dx
+            y += dy
+            if x not in range(len(ll)) or y not in range(len(ll)):
+                break
+            line_cost += ll[x][y]
+            if straight >= start:
+                if ((x, y), not vert) not in seen:
+                    yield ((x, y), not vert), line_cost + cost
 
 
-def find_shortest_path(map_area, start, end):
+def find_shortest_path(start, end, min_straight_dis, max_straight_dis):
+    bin_heap = [(0, (start, False)), (0, (start, True))]
     finished = {}
-    current_pos = start
-    map_area[current_pos].distance = 0
-    heap = []
-    heapq.heapify(heap)
-    while len(finished) != len(map_area):
-        for next_location in get_edges(current_pos, len(ll) - 1, finished):
-            next_node = map_area[next_location]
-            if map_area[current_pos].distance + next_node.cost < next_node.distance or next_node.distance == -1:
-                next_node.distance = map_area[current_pos].distance + next_node.cost
-                heapq.heappush(heap, next_node)
-        finished[current_pos] = map_area[current_pos].distance
-        if current_pos == end:
-            return finished[end]
-        current_pos = heapq.heappop(heap).pos
+    min_distances = defaultdict(lambda: inf)
+    while bin_heap:
+        current_cost, c_node = heapq.heappop(bin_heap)
+        finished[c_node] = current_cost
+        for new_node, nc in get_edges(c_node, finished, current_cost, min_straight_dis, max_straight_dis):
+            if nc < min_distances[new_node]:
+                min_distances[new_node] = nc
+                heapq.heappush(bin_heap, (nc, new_node))
+    return min(min_distances[(end, True)], min_distances[(end, False)])
 
 
-city = {}
-for x, row in enumerate(ll):
-    for y, num in enumerate(row):
-        city[(x, y)] = Node((x, y), num)
-print(find_shortest_path(city, (0, 0), (len(ll) - 1, len(ll) - 1)))
-# TODO: Add the 3 same direction constraint, dunno how I am going to do that but this is a basic shortest path finder.
+print(find_shortest_path((0, 0), (len(ll) - 1, len(ll) - 1), 0, 3))
 
 """ Part 2 """
+
+print(find_shortest_path((0, 0), (len(ll) - 1, len(ll) - 1), 4, 10))
