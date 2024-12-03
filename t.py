@@ -1,7 +1,17 @@
-ls = open('./input.txt').read().split('\n')[:-1]
+from collections import *
+
+ls = open('./input.txt').read().strip().split('\n')
+# ls = open('./input.txt').read().strip()
+# ls = open('./input.txt').read().strip().split('\n\n')
+
 
 """ Part 1 """
 
-print(ls)
+tt = 0
+
+for ll in ls:
+    print(repr(ll))
+
+print(tt)
 
 """ Part 2 """

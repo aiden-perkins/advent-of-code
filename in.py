@@ -5,7 +5,7 @@ day = line[0]
 try:
     year = int(line[1])
 except IndexError:
-    year = 2023
+    year = 2024
 link = f'https://adventofcode.com/{year}/day/{day}/input'
 headers = {
     'user-agent': 'https://github.com/aiden-perkins/advent-of-code',
