@@ -1,4 +1,4 @@
-ls = open('./input.txt').read().split('\n')[:-1]
+ls = open('./input.txt').read().strip().split('\n')
 
 """ Part 1 """
 

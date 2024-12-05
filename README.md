@@ -21,4 +21,4 @@ ___Other:___
 
 - [t.py](t.py) is just what I use as a template for starting new days.
 - [BinaryTree.py](2021/BinaryTree.py) Just a data structure I used for 2021 day 18, it's from one of my classes in college, so I easily understood how to use it without having to lookup stuff online.
-
+- The 2024-betterer folder was added because often when I finish puzzles, I like going back and making the solution better, more efficient, cleaner, etc., but I also want to preserve the code that I used to get an answer. So the 2024 folder holds the code I wrote under time pressure and the 2024-betterer folder holds code I wrote after that I would say is better, not all days/parts have a betterer solution.
