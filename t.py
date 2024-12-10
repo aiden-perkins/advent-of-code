@@ -1,8 +1,11 @@
+from helpers import *
 from collections import *
+from itertools import *
 
 ls = open('./input.txt').read().strip().split('\n')
 # ls = open('./input.txt').read().strip()
 # ls = open('./input.txt').read().strip().split('\n\n')
+lsl = len(ls)
 
 """ Part 1 """
 
