@@ -15,7 +15,7 @@ else:
     link = f'https://adventofcode.com/{year}/day/{day}/input'
     headers = {
         'user-agent': 'https://github.com/aiden-perkins/advent-of-code',
-        'cookie': 'session='
+        'cookie': f'session={open(".session").read()}'
     }
     inp = requests.get(link, headers=headers).content.decode()
     cache_txt = open(f'puzzle-inputs/{year}-{day}.txt', 'w')
