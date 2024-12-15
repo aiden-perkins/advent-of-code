@@ -27,14 +27,14 @@ def traverse(x: int, y: int, card: bool = True, diag: bool = True, igs: list[str
                 yield x + (dx * d), y + (dy * d)
 
 
-def value_traverse(x: int, y: int, arr: list[list[any]], card: bool = True, diag: bool = True, igs: list[str] = None, d: int = 1):
+def value_traverse(x: int, y: int, arr, card: bool = True, diag: bool = True, igs: list[str] = None, d: int = 1):
     arr_len = len(arr)
     for nx, ny in traverse(x, y, card, diag, igs, d):
         if in_bounds(nx, ny, arr_len):
             yield arr[nx][ny], (nx, ny)
 
 
-def find_val(arr: list[list[any]], function):
+def find_val(arr, function):
     for i, row in enumerate(arr):
         for j, val in enumerate(row):
             if function(val):

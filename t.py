@@ -1,6 +1,8 @@
 from helpers import *
 from collections import *
 from itertools import *
+from functools import *
+from operator import *
 
 ls = open('./input.txt').read().strip().split('\n')
 # ls = open('./input.txt').read().strip()
