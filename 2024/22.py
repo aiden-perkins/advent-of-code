@@ -7,7 +7,6 @@ ls = open('./input.txt').read().strip().split('\n')
 tt = 0
 
 for ll in ls:
-
     sn = int(ll.strip())
     for i in range(2000):
         nn = sn * 64
