@@ -1,6 +1,6 @@
 
 
-def traverse(x: int, y: int, card: bool = True, diag: bool = True, igs: list[str] = None, d: int = 1):
+def traverse(x, y, card = True, diag = True, igs = None, d = 1):
     if not igs:
         igs = []
 
@@ -27,7 +27,7 @@ def traverse(x: int, y: int, card: bool = True, diag: bool = True, igs: list[str
                 yield x + (dx * d), y + (dy * d)
 
 
-def value_traverse(x: int, y: int, arr, card: bool = True, diag: bool = True, igs: list[str] = None, d: int = 1):
+def value_traverse(x, y, arr, card = True, diag = True, igs = None, d = 1):
     arr_len = len(arr)
     for nx, ny in traverse(x, y, card, diag, igs, d):
         if in_bounds(nx, ny, arr_len):
@@ -41,5 +41,12 @@ def find_val(arr, function):
                 yield i, j
 
 
-def in_bounds(x: int, y: int, arr_len: int):
+def find_one(arr, t_val):
+    for i, row in enumerate(arr):
+        for j, val in enumerate(row):
+            if val == t_val:
+                return i, j
+
+
+def in_bounds(x, y, arr_len):
     return 0 <= x < arr_len and 0 <= y < arr_len

@@ -1,3 +1,4 @@
+import heapq
 from helpers import *
 from collections import *
 from itertools import *
