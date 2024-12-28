@@ -1,10 +1,10 @@
 import os
+import sys
 import requests
 
-line = input('[Day] (year): \n').split(' ')
-day = line[0]
+day = sys.argv[1]
 try:
-    year = int(line[1])
+    year = sys.argv[2]
 except IndexError:
     year = 2024
 

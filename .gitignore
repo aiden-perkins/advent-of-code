@@ -6,3 +6,4 @@ __pycache__
 puzzle-inputs/
 .session
 venv
+*.pyc

@@ -27,32 +27,34 @@ ___Time:___
 This is how fast each one is in ms on average running it 100 times.
 Running on my laptop.
 
-| Day | 2015 | 2020 | 2021 | 2022 | 2023 | 2024    | 2024-betterer                        |
-|:----|:-----|:-----|:-----|:-----|:-----|:--------|:-------------------------------------|
-| 1   |      |      |      |      |      | 15.99   | simplified - 11.30*                  |
-| 2   |      |      |      |      |      | 18.28   |                                      |
-| 3   |      |      |      |      |      | 19.46   | simplified with regex - 18.23        |
-| 4   |      |      |      |      |      | 24.42   | loop instead of 8 ifs - 328.33*      |
-| 5   |      |      |      |      |      | 21.43   |                                      |
-| 6   |      |      |      |      |      | 9020.19 | speed - TODO                         |
-| 7   |      |      |      |      |      | 2562.82 | speed - TODO                         |
-| 8   |      |      |      |      |      | 15.29   |                                      |
-| 9   |      |      |      |      |      |         | speed - TODO                         |
-| 10  |      |      |      |      |      | 37.9    |                                      |
-| 11  |      |      |      |      |      | 310.17  |                                      |
-| 12  |      |      |      |      |      | 234.46  |                                      |
-| 13  |      |      |      |      |      | 1394.66 | speed & no library - 20.58           |
-| 14  |      |      |      |      |      | 1475.25 | speed - TODO                         |
-| 15  |      |      |      |      |      | 37.62   |                                      |
-| 16  |      |      |      |      |      | TODO    |                                      |
-| 17  |      |      |      |      |      | TODO    |                                      |
-| 18  |      |      |      |      |      |         | binary search - TODO                 |
-| 19  |      |      |      |      |      |         |                                      |
-| 20  |      |      |      |      |      |         | speed - TODO                         |
-| 21  |      |      |      |      |      |         |                                      |
-| 22  |      |      |      |      |      |         | use bit shifting and simplify - TODO |
-| 23  |      |      |      |      |      |         |                                      |
-| 24  |      |      |      |      |      |         |                                      |
-| 25  |      |      |      |      |      |         |                                      |
+| Day | 2015 | 2020 | 2021 | 2022 | 2023 | 2024        | 2024-betterer                                      |
+|:----|:-----|:-----|:-----|:-----|:-----|:------------|:---------------------------------------------------|
+| 1   |      |      |      |      |      | 15.99       | simplified - 11.30*                                |
+| 2   |      |      |      |      |      | 18.28       |                                                    |
+| 3   |      |      |      |      |      | 19.46       | simplified with regex - 18.23                      |
+| 4   |      |      |      |      |      | 24.42       | loop instead of 8 ifs - 328.33*                    |
+| 5   |      |      |      |      |      | 21.43       |                                                    |
+| 6   |      |      |      |      |      | 9020.19     | speed - TODO                                       |
+| 7   |      |      |      |      |      | 2562.82     | speed - TODO                                       |
+| 8   |      |      |      |      |      | 15.29       |                                                    |
+| 9   |      |      |      |      |      |             | speed - TODO                                       |
+| 10  |      |      |      |      |      | 37.9        |                                                    |
+| 11  |      |      |      |      |      | 310.17      |                                                    |
+| 12  |      |      |      |      |      | 234.46      |                                                    |
+| 13  |      |      |      |      |      | 1394.66     | speed & no library - 20.58                         |
+| 14  |      |      |      |      |      | 1475.25     | speed - TODO                                       |
+| 15  |      |      |      |      |      | 37.62       |                                                    |
+| 16  |      |      |      |      |      | TODO        |                                                    |
+| 17  |      |      |      |      |      | TODO        |                                                    |
+| 18  |      |      |      |      |      | 481.79      | binary search - TODO                               |
+| 19  |      |      |      |      |      | 557.68      |                                                    |
+| 20  |      |      |      |      |      | ~22 minutes | speed - improve, currently ~4 1/2 mins             |
+| 21  |      |      |      |      |      | 17.88       |                                                    |
+| 22  |      |      |      |      |      |             | use bit shifting and simplify - improve speed more |
+| 23  |      |      |      |      |      | 53.35       |                                                    |
+| 24  |      |      |      |      |      | 12.87^      | Write general solution - TODO                      |
+| 25  |      |      |      |      |      | 98.45       |                                                    |
 
 \* = only part 1
+
+^ = not a general solution (hardcoded swaps)

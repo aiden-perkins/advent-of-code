@@ -12,7 +12,7 @@ for i, v in enumerate(ls):
     else:
         ps += ['.'] * int(v)
 psl = len(ps)
-ops = ps.copy()
+ops = ps[:]
 
 for i in range(psl):
     if i >= len(ps):
@@ -35,7 +35,7 @@ print(tt)
 """ Part 2 """
 
 tt = 0
-ps = ops.copy()
+ps = ops[:]
 i = 0
 last_dot_idx = len(ps) - 1
 
