@@ -1,4 +1,4 @@
-import BinaryTree
+from helpers import BinaryTree
 import math
 import time
 
@@ -6,7 +6,7 @@ ls = open('./input.txt', 'r').read().split('\n')[:-1]
 
 
 def make_tree(line):
-    tree = BinaryTree.BinaryTree()
+    tree = BinaryTree()
     tree.r = tree.Node()
     current = tree.r
     for char in line:
@@ -32,16 +32,16 @@ for snail_num in ls:
 """ Part 1 """
 
 
-def is_depth_5(b_tree, post_order: list[BinaryTree.BinaryTree.Node]):
+def is_depth_5(b_tree, post_order: list[BinaryTree.Node]):
     return [node for node in post_order if node.v != ',' and b_tree.depth(node) >= 5]
 
 
-def is_greater_9(post_order: list[BinaryTree.BinaryTree.Node]) -> list[BinaryTree.BinaryTree.Node]:
+def is_greater_9(post_order: list[BinaryTree.Node]) -> list[BinaryTree.Node]:
     return [node for node in post_order if node.v != ',' and node.v > 9]
 
 
 def add_trees(tree1, tree2):
-    combined = BinaryTree.BinaryTree()
+    combined = BinaryTree()
     combined.r = combined.Node(val=',')
     combined.r.insert_left(tree1.r)
     combined.r.insert_right(tree2.r)
