@@ -50,7 +50,6 @@ for a, b, d in d2[:1001]:
     else:
         connections.append({a, b})
 
-print(sorted([len(c) for c in connections], reverse=True)[:3])
 print(eval(' * '.join(map(str, sorted([len(c) for c in connections], reverse=True)[:3]))))
 
 
