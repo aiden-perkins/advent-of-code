@@ -6,7 +6,7 @@ day = sys.argv[1]
 try:
     year = sys.argv[2]
 except IndexError:
-    year = 2024
+    year = 2025
 
 inp = ''
 if os.path.isfile(f'puzzle-inputs/{year}-{day}.txt'):

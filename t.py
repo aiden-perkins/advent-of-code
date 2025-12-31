@@ -1,4 +1,5 @@
 import heapq
+import re
 from helpers import *
 from collections import *
 from itertools import *
